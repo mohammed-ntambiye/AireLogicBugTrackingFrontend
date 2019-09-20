@@ -1,0 +1,65 @@
+﻿@model AireLogicBugTrackingFrontend.Models.BugsModel
+
+@{
+    ViewData["Title"] = "CreateBug";
+}
+
+<h2>CreateBug</h2>
+
+<h4>BugsModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateBug">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BugTitle" class="control-label"></label>
+                <input asp-for="BugTitle" class="form-control" />
+                <span asp-validation-for="BugTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeStamp" class="control-label"></label>
+                <input asp-for="TimeStamp" class="form-control" />
+                <span asp-validation-for="TimeStamp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeOfBug" class="control-label"></label>
+                <input asp-for="TypeOfBug" class="form-control" />
+                <span asp-validation-for="TypeOfBug" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <input asp-for="Priority" class="form-control" />
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsOpen" /> @Html.DisplayNameFor(model => model.IsOpen)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

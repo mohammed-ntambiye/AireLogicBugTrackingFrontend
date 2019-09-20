@@ -1,0 +1,31 @@
+﻿@model List<AireLogicBugTrackingFrontend.Models.BugsModel>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h2>Welcome to Aire Logic Bug Tracking system </h2>
+
+<article class="row">
+    <section class="col-md-12 ">
+
+        @foreach (var item in Model)
+        {
+
+            {
+                <div class="col-md-4">
+                    <h4>@item.BugTitle</h4>
+                    <p>Priority : @item.Priority</p>
+
+                    <div class="col-md-12">
+                        <p>Time Raised : @item.TimeStamp</p>
+                        <p>Status : @item.Status</p>
+                        <p>Description : @item.Description</p>
+                        <p>Author : @item.Author.FirstName</p>
+                    </div>
+                </div>
+            }
+        }
+    </section>
+
+</article>
