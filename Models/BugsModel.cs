@@ -29,10 +29,19 @@ namespace AireLogicBugTrackingFrontend.Models
         [Required]
         public UserModel Author { get; set; }
 
+    
+        public AssignedStatus AssignedFlag { get; set; }
+
         public bool IsOpen { get; set; }
 
         [Required]
         public string Status { get; set; }
 
+    }
+
+    public class AssignedStatus
+    {
+        public bool Assigned { get; set; }
+        public UserModel AssignedUser { get; set; }
     }
 }

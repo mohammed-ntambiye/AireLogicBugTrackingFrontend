@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using AireLogicBugTrackingFrontend.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AireLogicBugTrackingFrontend.Gateways.Interfaces
 {
@@ -15,7 +16,7 @@ namespace AireLogicBugTrackingFrontend.Gateways.Interfaces
 
         Task<List<BugsModel>> GetBugsByStatus(string status);
 
-        Task<BugsModel> CreateBug(BugsModel bug);
+        Task<ActionResult> CreateBug(BugsModel bug);
 
         Task<BugsModel> GetBug(int bugId);
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AireLogicBugTrackingFrontend.Gateways.Interfaces;
 using AireLogicBugTrackingFrontend.Models;
 using AireLogicBugTrackingFrontend.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AireLogicBugTrackingFrontend.Services
 {
@@ -29,9 +30,29 @@ namespace AireLogicBugTrackingFrontend.Services
             throw new NotImplementedException();
         }
 
-        public BugsModel CreateBug(BugsModel bug)
+        public ActionResult CreateBug(BugsModel bug)
         {
-            throw new NotImplementedException();
+            bug.AssignedFlag = new AssignedStatus()
+            {
+                Assigned = true,
+                AssignedUser = new UserModel()
+                {
+                    Username = "MNtambiye",
+                    FirstName = "Mohammed",
+                    Department = "it"
+                }
+
+            };
+
+            bug.Author = new UserModel()
+            {
+                Username = "MNtambiye",
+                FirstName = "Mohammed",
+                Department = "it"
+            };
+
+            var result=_bugsGateway.CreateBug(bug);
+            return result.Result;
         }
 
         public BugsModel GetBug(int bugId)

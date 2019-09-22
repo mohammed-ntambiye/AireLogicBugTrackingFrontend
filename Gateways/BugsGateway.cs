@@ -1,51 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using AireLogicBugTrackingFrontend.Gateways.Interfaces;
 using AireLogicBugTrackingFrontend.Models;
-using Microsoft.Rest;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
+using Newtonsoft.Json;
+using Microsoft.Extensions.Options;
+using SmartKitchenFrontend.Configuration;
 
 namespace AireLogicBugTrackingFrontend.Gateways
 {
     public class BugsGateway : IBugsGateway
     {
+
+        private readonly HttpClient _client = new HttpClient();
+        private readonly IOptions<Configuration> _configuration;
+
+        public BugsGateway(IOptions<Configuration> configuration)
+        {
+            _configuration = configuration;
+        }
+
+
         public async Task<List<BugsModel>> GetAllBugs()
         {
-            return new List<BugsModel>()
+            try
             {
-                new BugsModel()
+                HttpResponseMessage response = await _client.GetAsync(_configuration.Value.AirLogicApiBaseUrl + "/api/Bugs");
+                if (response.IsSuccessStatusCode)
                 {
-                    BugId = 1,
-                    TimeStamp = new DateTime(),
-                    BugTitle = "Styling Issue",
-                    Priority = "High",
-                    Description = "The Home page has a slight padding issue",
-                    IsOpen = true,
-                    Status = "New",
-                    TypeOfBug = "Style",
-                    Author = new UserModel()
-                    {
-                        Username = "NMohammed"
-                    }
-                },
-                new BugsModel()
-                {
-                    BugId = 2,
-                    TimeStamp = new DateTime(),
-                    BugTitle = "Button press doesn't work",
-                    Priority = "High",
-                    Description = "The Home page has a slight padding issue",
-                    IsOpen = true,
-                    Status = "New",
-                    TypeOfBug = "Style",
-                    Author = new UserModel()
-                    {
-                        Username = "MNT"
-                    }
+                    var bugs  = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<BugsModel>>(bugs);
                 }
-            };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return null;
         }
 
         public async Task<BugsModel> GetBugsAssignedToUser(string userId)
@@ -58,9 +53,20 @@ namespace AireLogicBugTrackingFrontend.Gateways
             throw new NotImplementedException();
         }
 
-        public async Task<BugsModel> CreateBug(BugsModel bug)
+        public async Task<ActionResult> CreateBug(BugsModel bug)
         {
-            throw new NotImplementedException();
+            if (bug == null) return new StatusCodeResult(400);
+            try
+            {
+                HttpResponseMessage response = await _client.PostAsJsonAsync(_configuration.Value.AirLogicApiBaseUrl + "/api/Bugs", bug);      
+                response.EnsureSuccessStatusCode();
+                return new StatusCodeResult(200);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return new StatusCodeResult(500);
+            }
         }
 
         public async Task<HttpStatusCode> DeleteBug(string bugId)
@@ -80,18 +86,20 @@ namespace AireLogicBugTrackingFrontend.Gateways
 
         public async Task<BugsModel> GetBug(int bugId)
         {
-            return new BugsModel()
+            try
             {
-                BugId =bugId,
-                TimeStamp = new DateTime(),
-                BugTitle = "Styling Issue",
-                Priority = "High",
-                Description = "The Home page has a slight padding issue",
-                IsOpen = true,
-                Status = "New",
-                TypeOfBug = "Style",
-                Author = new UserModel()
-            };
+                HttpResponseMessage response = await _client.GetAsync(_configuration.Value.AirLogicApiBaseUrl + "/api/Bugs/"+bugId);
+                if (response.IsSuccessStatusCode)
+                {
+                    var bugs = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<BugsModel>(bugs);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return null;
         }
     }
 }
