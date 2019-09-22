@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using AireLogicBugTrackingFrontend.Models;
 using AireLogicBugTrackingFrontend.Services.Interfaces;
@@ -34,12 +35,31 @@ namespace AireLogicBugTrackingFrontend.Controllers
         [HttpPost]
         public ActionResult CreateBug(BugsModel model)
         {
+            model.TimeStamp = DateTime.Now;
             _BugsService.CreateBug(model);
             return RedirectToAction("Index");
+        }
 
+        [HttpGet]
+        public ActionResult EditBug(int bugId)
+        {
+            var model = _BugsService.GetBug(bugId);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditBug(BugsModel bug)
+        {
+            _BugsService.EditBug(bug);
+            return View();
         }
 
 
-
+        [HttpPost]
+        public PartialViewResult SingleBug(int bugId)
+        {
+            var bug = _BugsService.GetBug(bugId);
+            return PartialView(bug);
+        }    
     }
 }

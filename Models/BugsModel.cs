@@ -11,6 +11,8 @@ namespace AireLogicBugTrackingFrontend.Models
 {
     public class BugsModel
     {
+        public int BugId { get; set; }
+
         [Required]
         public string BugTitle { get; set; }
 

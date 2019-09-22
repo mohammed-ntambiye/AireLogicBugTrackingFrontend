@@ -17,10 +17,12 @@ namespace AireLogicBugTrackingFrontend.Gateways.Interfaces
 
         Task<BugsModel> CreateBug(BugsModel bug);
 
+        Task<BugsModel> GetBug(int bugId);
+
         Task<HttpStatusCode> DeleteBug(string bugId);
 
         Task<HttpStatusCode> ChangeBugStatus(string bugId, string newStatus);
 
-        Task<HttpStatusCode> EditBug(string bugId, BugsModel bug);
+        Task<HttpStatusCode> EditBug(BugsModel bug);
     }
 }

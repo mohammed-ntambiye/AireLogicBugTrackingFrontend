@@ -17,11 +17,13 @@ namespace AireLogicBugTrackingFrontend.Services.Interfaces
 
         BugsModel CreateBug (BugsModel bug);
 
-        HttpStatusCode DeleteBug (string bugId);
+        BugsModel GetBug(int bugId);
 
-        HttpStatusCode ChangeBugStatus (string bugId, string newStatus );
+        HttpStatusCode DeleteBug (int bugId);
 
-        HttpStatusCode EditBug (string bugId ,BugsModel bug);
+        HttpStatusCode ChangeBugStatus (int bugId, string newStatus );
+
+        HttpStatusCode EditBug (BugsModel bug);
 
     }
 }

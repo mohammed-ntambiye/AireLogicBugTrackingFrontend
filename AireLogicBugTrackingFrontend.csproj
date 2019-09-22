@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Folder Include="Tests\" />
+    <Folder Include="Views\Partials\" />
   </ItemGroup>
 
 </Project>

@@ -13,10 +13,11 @@ namespace AireLogicBugTrackingFrontend.Gateways
     {
         public async Task<List<BugsModel>> GetAllBugs()
         {
-            return  new List<BugsModel>()
+            return new List<BugsModel>()
             {
                 new BugsModel()
                 {
+                    BugId = 1,
                     TimeStamp = new DateTime(),
                     BugTitle = "Styling Issue",
                     Priority = "High",
@@ -24,11 +25,14 @@ namespace AireLogicBugTrackingFrontend.Gateways
                     IsOpen = true,
                     Status = "New",
                     TypeOfBug = "Style",
-                    Author =  new UserModel()
-                      
+                    Author = new UserModel()
+                    {
+                        Username = "NMohammed"
+                    }
                 },
                 new BugsModel()
                 {
+                    BugId = 2,
                     TimeStamp = new DateTime(),
                     BugTitle = "Button press doesn't work",
                     Priority = "High",
@@ -36,8 +40,10 @@ namespace AireLogicBugTrackingFrontend.Gateways
                     IsOpen = true,
                     Status = "New",
                     TypeOfBug = "Style",
-                    Author =  new UserModel()
-
+                    Author = new UserModel()
+                    {
+                        Username = "MNT"
+                    }
                 }
             };
         }
@@ -67,9 +73,25 @@ namespace AireLogicBugTrackingFrontend.Gateways
             throw new NotImplementedException();
         }
 
-        public async Task<HttpStatusCode> EditBug(string bugId, BugsModel bug)
+        public async Task<HttpStatusCode> EditBug(BugsModel bug)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<BugsModel> GetBug(int bugId)
+        {
+            return new BugsModel()
+            {
+                BugId =bugId,
+                TimeStamp = new DateTime(),
+                BugTitle = "Styling Issue",
+                Priority = "High",
+                Description = "The Home page has a slight padding issue",
+                IsOpen = true,
+                Status = "New",
+                TypeOfBug = "Style",
+                Author = new UserModel()
+            };
         }
     }
 }

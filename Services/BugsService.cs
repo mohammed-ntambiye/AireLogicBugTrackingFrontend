@@ -34,12 +34,29 @@ namespace AireLogicBugTrackingFrontend.Services
             throw new NotImplementedException();
         }
 
-        public HttpStatusCode DeleteBug(string bugId)
+        public BugsModel GetBug(int bugId)
+        {
+            var result = _bugsGateway.GetBug(bugId);
+            return result.Result;
+        }
+
+        public HttpStatusCode DeleteBug(int bugId)
         {
             throw new NotImplementedException();
         }
 
-        public HttpStatusCode EditBug(string bugId, BugsModel bug)
+        public HttpStatusCode ChangeBugStatus(int bugId, string newStatus)
+        {
+            throw new NotImplementedException();
+        }
+
+        public HttpStatusCode EditBug(BugsModel bug)
+        {
+            var result = _bugsGateway.EditBug(bug);
+            return result.Result;
+        }
+
+        public HttpStatusCode DeleteBug(string bugId)
         {
             throw new NotImplementedException();
         }
