@@ -12,6 +12,8 @@ namespace AireLogicBugTrackingFrontend.Services.Interfaces
     {
         List<BugsModel> GetAllBugs();
 
+        List<BugsModel> GetAllOpenBugs();
+
         BugsModel GetBugsAssignedToUser(string userId);
 
         List<BugsModel> GetBugsByStatus(string status);

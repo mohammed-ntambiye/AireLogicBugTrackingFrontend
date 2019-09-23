@@ -9,8 +9,7 @@ namespace AireLogicBugTrackingFrontend.Models
 {
     public class UserModel
     {
-        public string UserId { get; set; }
-
+      
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }

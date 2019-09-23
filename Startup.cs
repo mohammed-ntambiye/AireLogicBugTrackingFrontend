@@ -29,8 +29,12 @@ namespace AireLogicBugTrackingFrontend
         {
 
             services.AddTransient<IBugsService, BugsService>();
-            services.AddTransient<IAccountsService, AccountsService>();
             services.AddTransient<IBugsGateway, BugsGateway>();
+
+            services.AddTransient<IAccountsService, AccountsService>();
+            services.AddTransient<IAccountsGateway, AccountsGateway>();
+
+
             services.Configure<Configuration>(Configuration.GetSection("Configuration"));
 
             services.AddMvc();

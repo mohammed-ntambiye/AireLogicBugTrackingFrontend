@@ -43,6 +43,24 @@ namespace AireLogicBugTrackingFrontend.Gateways
             return null;
         }
 
+        public async Task<List<BugsModel>> GetAllOpenBugs()
+        {
+            try
+            {
+                HttpResponseMessage response = await _client.GetAsync(_configuration.Value.AirLogicApiBaseUrl + "/api/Bugs/OpenBugs");
+                if (response.IsSuccessStatusCode)
+                {
+                    var bugs = await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<BugsModel>>(bugs);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return null;
+        }
+
         public async Task<BugsModel> GetBugsAssignedToUser(string userId)
         {
             throw new NotImplementedException();

@@ -12,6 +12,8 @@ namespace AireLogicBugTrackingFrontend.Gateways.Interfaces
     {
         Task<List<BugsModel>> GetAllBugs();
 
+        Task<List<BugsModel>> GetAllOpenBugs();
+
         Task<BugsModel> GetBugsAssignedToUser(string userId);
 
         Task<List<BugsModel>> GetBugsByStatus(string status);

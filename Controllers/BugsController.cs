@@ -21,7 +21,7 @@ namespace AireLogicBugTrackingFrontend.Controllers
         [HttpGet]
         public  ActionResult Index()
         {
-            var model = _BugsService.GetAllBugs();
+            var model = _BugsService.GetAllOpenBugs();
             return View(model);
         }
 

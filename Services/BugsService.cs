@@ -25,6 +25,14 @@ namespace AireLogicBugTrackingFrontend.Services
             return result;
         }
 
+        public List<BugsModel> GetAllOpenBugs()
+        {
+            {
+                var result = _bugsGateway.GetAllOpenBugs();
+                return result.Result;
+            }
+        }
+
         public HttpStatusCode ChangeBugStatus(string bugId, string newStatus)
         {
             throw new NotImplementedException();
