@@ -8,6 +8,7 @@ using Moq;
 using AireLogicBugTrackingFrontend.Gateways.Interfaces;
 using AireLogicBugTrackingFrontend.Models;
 using AireLogicBugTrackingFrontend.Services;
+using Microsoft.WindowsAzure.Storage.Blob.Protocol;
 
 namespace AireLogicBugTrackingFrontend.Tests.Unit.Services
 {
@@ -98,7 +99,7 @@ namespace AireLogicBugTrackingFrontend.Tests.Unit.Services
         }
 
         [Fact]
-        public async Task GetBugsServiceShouldCallGateway()
+        public void GetBugsServiceShouldCallGateway()
         {
             //Arrange
             var model = new BugsModel() { };
@@ -111,4 +112,5 @@ namespace AireLogicBugTrackingFrontend.Tests.Unit.Services
             _bugsGatewayMock.Verify(m => m.GetBug(1), Times.Once);
         }
     }
+
 }

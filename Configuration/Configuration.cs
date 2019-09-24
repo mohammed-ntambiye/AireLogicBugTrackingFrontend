@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SmartKitchenFrontend.Configuration
+namespace AireLogicBugTrackingFrontend.Configuration
 {
     public class Configuration
     {

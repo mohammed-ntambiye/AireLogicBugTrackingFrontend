@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Internal;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Options;
-using SmartKitchenFrontend.Configuration;
 
 namespace AireLogicBugTrackingFrontend.Gateways
 {
@@ -17,9 +16,9 @@ namespace AireLogicBugTrackingFrontend.Gateways
     {
 
         private readonly HttpClient _client = new HttpClient();
-        private readonly IOptions<Configuration> _configuration;
+        private readonly IOptions<Configuration.Configuration> _configuration;
 
-        public BugsGateway(IOptions<Configuration> configuration)
+        public BugsGateway(IOptions<Configuration.Configuration> configuration)
         {
             _configuration = configuration;
         }

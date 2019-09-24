@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SmartKitchenFrontend.Configuration;
 
 namespace AireLogicBugTrackingFrontend
 {
@@ -35,7 +34,7 @@ namespace AireLogicBugTrackingFrontend
             services.AddTransient<IAccountsGateway, AccountsGateway>();
 
 
-            services.Configure<Configuration>(Configuration.GetSection("Configuration"));
+            services.Configure<Configuration.Configuration>(Configuration.GetSection("Configuration"));
 
             services.AddMvc();
         }

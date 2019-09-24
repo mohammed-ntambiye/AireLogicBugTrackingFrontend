@@ -7,7 +7,6 @@ using AireLogicBugTrackingFrontend.Gateways.Interfaces;
 using AireLogicBugTrackingFrontend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using SmartKitchenFrontend.Configuration;
 
 namespace AireLogicBugTrackingFrontend.Gateways
 {
@@ -15,9 +14,9 @@ namespace AireLogicBugTrackingFrontend.Gateways
     {
 
         private readonly HttpClient _client = new HttpClient();
-        private readonly IOptions<Configuration> _configuration;
+        private readonly IOptions<Configuration.Configuration> _configuration;
 
-        public AccountsGateway(IOptions<Configuration> configuration)
+        public AccountsGateway(IOptions<Configuration.Configuration> configuration)
         {
             _configuration = configuration;
         }
